@@ -2,17 +2,18 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const dbconnection = require('./config/dbconnection')
+const { registrationControllers } = require('./controllers/authcontollers')
+
+app.use(express.json());
+dbconnection();
+
 app.get('/',(req,res)=>{
     res.send("hey developers")
 })
-app.use(express.json());
+app.post('/registration', registrationControllers )
 
-mongoose.connect(
-    process.env.DB_URL,
-).then(()=>{
-    console.log("connected mongodb");
 
-})
 
 console.log(process.env.PORT);
 

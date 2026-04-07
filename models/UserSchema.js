@@ -35,6 +35,10 @@ const userchema = new Schema({
     },
     address:{
         type: String
+    },
+    isLogin :{
+        type: Boolean,
+        default: false
     }
 
 })

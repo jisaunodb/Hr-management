@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const dbconnection = require('./config/dbconnection')
-const { registrationControllers } = require('./controllers/authcontollers')
+const { registrationControllers, logincontroller, logoutcontroller, logoutcontoller } = require('./controllers/authcontollers')
+const { profilecreatecontroller, getprofile } = require('./controllers/profilecreatecontroller')
 
 app.use(express.json());
 dbconnection();
@@ -12,6 +13,15 @@ app.get('/',(req,res)=>{
     res.send("hey developers")
 })
 app.post('/registration', registrationControllers )
+
+app.post('/login', logincontroller)
+app.post('/logout', logoutcontroller)
+
+// profile create
+app.post('/profilecreate', profilecreatecontroller)
+app.get('/getprofile', getprofile)
+
+
 
 
 
